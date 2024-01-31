@@ -68,8 +68,10 @@ export function updatePairHourData(event: ethereum.Event): PairHourData {
     .toHexString()
     .concat('-')
     .concat(BigInt.fromI32(hourIndex).toString())
+
   let pair = Pair.load(event.address.toHexString())
   let pairHourData = PairHourData.load(hourPairID)
+
   if (pairHourData === null) {
     pairHourData = new PairHourData(hourPairID)
     pairHourData.hourStartUnix = hourStartUnix
