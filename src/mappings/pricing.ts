@@ -3,14 +3,14 @@ import { Pair, Token, Bundle } from '../types/schema'
 import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD, UNTRACKED_PAIRS } from './helpers'
 
-const WETH_ADDRESS = '0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7'
+const WETH_ADDRESS = '0x027D2E627209f1cebA52ADc8A5aFE9318459b44B'
 const USDC_WETH_PAIR = ADDRESS_ZERO // created 10008355
 const DAI_WETH_PAIR = ADDRESS_ZERO // created block 10042267
-const USDT_WETH_PAIR = '0xfd4f4869f809eb5c91b91c63eae7f16d77b37fcc' // created block 10093341
+const USDT_WETH_PAIR = '0x4CaeeF0CA99A611025a9A9eA2F02ECE1DAef9bc5' // created block 10093341
 
 export function getEthPriceInUSD(): BigDecimal {
 
-  return BigDecimal.fromString('35')
+  return BigDecimal.fromString('0.692')
 
   // fetch eth prices for each stablecoin
   let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
@@ -45,12 +45,19 @@ export function getEthPriceInUSD(): BigDecimal {
 
 // token where amounts should contribute to tracked volume and liquidity
 let WHITELIST: string[] = [
+
+    // SEI
+    '0xF983afa393199D6902a1Dd04f8E93465915ffD8B',
+    '0x027D2E627209f1cebA52ADc8A5aFE9318459b44B',
+
+    // AVAX
   '0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7', // WETH (WAVAX)
   '0xd586E7F844cEa2F87f50152665BCbc2C279D8d70', // DAI
   '0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E', // USDC
   '0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7', // USDT
   '0xc7198437980c041c805a1edcba50c1ce5db95118', // USDT.e
 
+    // Legacy
   '0x0000000000085d4780b73119b644ae5ecd22b376', // TUSD
   '0x5d3a536e4d6dbd6114cc1ead35777bab948e3643', // cDAI
   '0x39aa39c021dfbae8fac545936693ac917d5e7563', // cUSDC
